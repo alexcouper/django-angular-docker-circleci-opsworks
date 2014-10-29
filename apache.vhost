@@ -1,0 +1,11 @@
+<VirtualHost *>
+
+    WSGIDaemonProcess review python-path=/srv/review
+    WSGIProcessGroup review
+    WSGIScriptAlias / /srv/review/review/wsgi.py
+
+    <Directory /srv/review/review>
+        Require all granted
+    </Directory>
+
+</VirtualHost>
