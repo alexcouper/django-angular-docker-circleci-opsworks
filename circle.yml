@@ -1,6 +1,6 @@
 machine:
   environment:
-    USE_NOSETESTS: 1
+    DJANGO_TEST_MODE: 1
   timezone:
     Europe/London
   python:

@@ -19,8 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'np#$v%63k2=nlsu0)a&yvi&31b536o!=8o(kzye(c8w2xkqvix'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DJANGO_TEST_MODE = os.environ.get('DJANGO_TEST_MODE') == '1'
+
+if DJANGO_TEST_MODE:
+    DEBUG = True
+else:
+    DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -38,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'dummy',
 )
-if os.environ.get('USE_NOSETESTS') == '1':
+if DJANGO_TEST_MODE:
     INSTALLED_APPS += ('django_nose',)
     TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
