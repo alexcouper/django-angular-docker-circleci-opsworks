@@ -1,4 +1,6 @@
 machine:
+  environment:
+    USE_NOSETESTS: 1
   timezone:
     Europe/London
   python:
@@ -6,7 +8,7 @@ machine:
 
 dependencies:
   pre:
-    - pip3 install -r review/requirements/base.txt
+    - pip3 install -r review/requirements/base.txt -r review/requirements/test.txt
 
 test:
   override:

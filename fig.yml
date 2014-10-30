@@ -1,6 +1,8 @@
 app:
   build: .
   command: python3 manage.py runserver 0.0.0.0:8000
+  environment:
+    USE_NOSETESTS: 1
   ports:
     - "8000:8000"
   volumes:
