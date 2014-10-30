@@ -12,4 +12,4 @@ dependencies:
 
 test:
   override:
-    - cd review; python3 manage.py test
+    - cd review; ./run_django_tests.sh
