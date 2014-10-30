@@ -5,6 +5,8 @@ machine:
     Europe/London
   python:
     version: 3.4.0
+  services:
+    - docker
 
 dependencies:
   pre:
@@ -13,3 +15,12 @@ dependencies:
 test:
   override:
     - cd review; ./run_django_tests.sh
+
+deployment:
+  hub:
+    branch: circleci_poc
+    commands:
+      - sed "s/<EMAIL>/$DOCKERHUB_EMAIL/;s/<AUTH>/$DOCKERHUB_AUTH/"\
+          < dockercfg.template > ~/.dockercfg
+      - docker build -t $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG .
+      - docker push $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG
