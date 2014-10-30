@@ -1,3 +1,9 @@
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-# Create your tests here.
+
+class DummyTestCase(TestCase):
+
+    def test_index_hello(self):
+        content = self.client.get(reverse('dummy')).content
+        self.assertIn(b'Hello', content)

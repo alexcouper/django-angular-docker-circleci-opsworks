@@ -6,5 +6,5 @@ urlpatterns = patterns(
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^dummy/', 'dummy.views.index'),
+    url(r'^dummy/', 'dummy.views.index', name="dummy"),
 )
