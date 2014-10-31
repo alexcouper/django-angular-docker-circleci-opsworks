@@ -1,5 +1,5 @@
 {
-  "https://index.docker.io/v1/": {
+  "$DOCKERHUB_API_URL": {
     "auth": "$DOCKERHUB_AUTH",
     "email": "$DOCKERHUB_EMAIL"
   }
