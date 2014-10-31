@@ -20,7 +20,6 @@ deployment:
   hub:
     branch: circleci_poc
     commands:
-      - sed "s/<EMAIL>/$DOCKERHUB_EMAIL/;s/<AUTH>/$DOCKERHUB_AUTH/"\
-          < dockercfg.template > ~/.dockercfg
+      - envsubst < dockercfg.template > ~/.dockercfg
       - docker build -t $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG .
       - docker push $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG
