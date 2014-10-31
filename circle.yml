@@ -10,7 +10,9 @@ machine:
 
 dependencies:
   pre:
-    - pip3 install -r review/requirements/base.txt -r review/requirements/test.txt
+    - pip3 install -r review/requirements/base.txt
+    - pip3 install -r review/requirements/test.txt
+    - pip3 install -r review/requirements/deployment.txt
 
 test:
   override:
@@ -23,3 +25,4 @@ deployment:
       - envsubst < dockercfg.template > ~/.dockercfg
       - docker build -t $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG .
       - docker push $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG
+      - python3 deploy_to_opsworks.py
