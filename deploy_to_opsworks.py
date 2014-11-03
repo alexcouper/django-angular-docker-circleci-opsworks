@@ -24,6 +24,10 @@ if __name__ == '__main__':
         deploy_kwargs.update({
             'stack_id': os.environ['OW_APP_STACK_ID'],
             'app_id': os.environ['OW_APP_APP_ID']})
+    elif args.type == 'static':
+        deploy_kwargs.update({
+            'stack_id': os.environ['OW_STATIC_STACK_ID'],
+            'app_id': os.environ['OW_STATIC_APP_ID']})
     else:
         raise ValueError(args.type)
 

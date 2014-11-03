@@ -39,6 +39,9 @@ context...
   - *OW_APP_STACK_ID* and *OW_APP_APP_ID* IDs for the OpsWork app which runs
     the review-app containers
 
+  - *OW_STATIC_STACK_ID* and *OW_STATIC_APP_ID* IDs for the OpsWork app which
+    runs the review-static containers
+
   - *DOCKERHUB_API_URL*, *DOCKERHUB_EMAIL* and *DOCKERHUB_AUTH* URL and
     credentials for an account with rights to push to both the review-app and
     review-static repositories at Dockerhub

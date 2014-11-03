@@ -26,4 +26,6 @@ deployment:
       - ./build_and_push_image.sh app
       - python3 review/manage.py collectstatic --noinput
       - ./build_and_push_image.sh static
+      # Deploy static first to avoid dependency problems
+      - python3 deploy_to_opsworks.py static
       - python3 deploy_to_opsworks.py app
