@@ -31,6 +31,10 @@ context...
   - *DJANGO_ALLOWED_HOST* This is required to match the HOST of an http request
     which is to be serviced by the WSGI (Django) app
 
+  - *DJANGO_STATIC_URL* For production systems, this env var should be set to
+    the prefix of the delivery URL for static files. If not present in the env
+    vars, defaults to ``/static/``.
+
 ### CI environment
 
   - *AWS_ACCESS_KEY_ID* and *AWS_SECRET_ACCESS_KEY* IAM keypair with the
