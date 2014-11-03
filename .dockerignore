@@ -4,3 +4,4 @@ fig.yml
 */__pycache__
 */*.sqlite3
 */*/static
+static-build/
