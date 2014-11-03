@@ -23,6 +23,6 @@ deployment:
     branch: circleci_poc
     commands:
       - envsubst < dockercfg.template > ~/.dockercfg
-      - docker build -t $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG .
-      - docker push $DOCKERHUB_IMAGE_NAME:$DOCKERHUB_IMAGE_TAG
-      - python3 deploy_to_opsworks.py
+      - docker build -t $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG .
+      - docker push $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG
+      - python3 deploy_to_opsworks.py app
