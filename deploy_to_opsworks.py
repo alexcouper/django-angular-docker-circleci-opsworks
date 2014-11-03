@@ -7,7 +7,6 @@ import boto.opsworks
 
 def deploy(region, stack_id, app_id):
     opsworks = boto.opsworks.connect_to_region(region)
-    print(opsworks.describe_stacks())
     opsworks.create_deployment(stack_id=stack_id,
                                command={'Name': 'deploy'},
                                app_id=app_id)
