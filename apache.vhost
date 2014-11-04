@@ -1,5 +1,10 @@
 <VirtualHost *>
 
+    Alias /health.html /var/www/html/health.html
+    <Files health.html>
+         Require all granted
+    </Files>
+
     WSGIDaemonProcess review python-path=/srv/review
     WSGIProcessGroup review
     WSGIScriptAlias / /srv/review/review/wsgi.py
