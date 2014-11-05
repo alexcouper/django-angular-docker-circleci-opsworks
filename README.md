@@ -15,6 +15,18 @@ This is a production-ready Apache process hooked up to the Django WSGI module.
 This is the collected static files from across the Django project, packaged
 into a folder structure and served up by nginx.
 
+## Development mode
+
+Local dependencies:
+
+  - [Docker](https://docs.docker.com/installation/#installation)
+
+  - [Fig](http://www.fig.sh/install.html)
+
+Once your dependencies are set up, Django tests may be run from your host with:
+
+``fig run app ./run_django_tests.sh``
+
 ## Environment Variables
 
 For the various phases of this project's delivery cycle to function correctly,
@@ -23,8 +35,9 @@ context...
 
 ### Django tests and Django dev server
 
-  - *DJANGO_TEST_MODE* should be '1' to indicate that this is test mode (and
-    also to activate Django DEBUG mode)
+  - *DJANGO_TEST_MODE* should be '1' to indicate that this is test mode and
+    also to activate Django DEBUG mode. (Note: this is already set up for you
+    if you are using Fig as outlined above.)
 
 ### review-app WSGI application
 
