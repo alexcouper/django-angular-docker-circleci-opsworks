@@ -27,6 +27,18 @@ Once your dependencies are set up, Django tests may be run from your host with:
 
 ``fig run app ./run_django_tests.sh``
 
+To run the BDD tests which will drive the code, written in Jasmine and
+executed (in dev) against the Django dev server, you need to have all the node
+depenencies set up locally:
+
+``nvm install``
+
+Then you can run the BDD tests with:
+
+``npm run protractor``
+
+Note you will need the APP_SERVICE_URL environment variable set (see below)
+
 ## Environment Variables
 
 For the various phases of this project's delivery cycle to function correctly,
@@ -38,6 +50,12 @@ context...
   - *DJANGO_TEST_MODE* should be '1' to indicate that this is test mode and
     also to activate Django DEBUG mode. (Note: this is already set up for you
     if you are using Fig as outlined above.)
+
+### Developer tests
+
+  - *APP_SERVICE_URL* should point to the open dev server port on your Fig
+    container's IP address (If you are running boot2docker you can get this
+    with ``boot2docker ip``)
 
 ### review-app WSGI application
 

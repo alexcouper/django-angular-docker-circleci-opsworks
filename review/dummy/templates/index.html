@@ -1,10 +1,11 @@
-{% load staticfiles %}<html>
+{% load staticfiles %}<!doctype html><html lang="en" ng-app>
 <head>
     <title>Dummy Test Page</title>
+    <script src="{% static "common/js/libs/angular.min.js" %}"></script>
 </head>
 <body>
-Hello: self-deploying app and static<br />
+<p class="greeting">Hello: self-deploying app and static</p>
 <img src="{% static 'dummy/img/stanley.jpg' %}" />
-Visits: {{ counter }}.
+<span id="counter">Visits: {{ counter }}.</span>
 </body>
 </html>
