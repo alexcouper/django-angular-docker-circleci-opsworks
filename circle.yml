@@ -15,6 +15,10 @@ dependencies:
     - pip3 install -r review/requirements/deployment.txt
 
 test:
+  pre:
+    - docker build -t $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG .
+    - python3 review/manage.py collectstatic --noinput
+    - docker build -t $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG static_build/
   override:
     - cd review; ./run_django_tests.sh
 
@@ -23,9 +27,8 @@ deployment:
     branch: circleci_poc
     commands:
       - envsubst < dockercfg.template > ~/.dockercfg
-      - ./build_and_push_image.sh app
-      - python3 review/manage.py collectstatic --noinput
-      - ./build_and_push_image.sh static
+      - docker push $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG
+      - docker push $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG
       # Deploy static first to avoid dependency problems
       - python3 deploy_to_opsworks.py static
       - python3 deploy_to_opsworks.py app
