@@ -93,3 +93,11 @@ context...
 
   - *LOG_AGGREGATE_HOST* and *LOG_AGGREGATE_PORT* the hostname and port of the
     log aggregation service
+
+### Production environment
+
+  - *DJANGO_DB_HOST*, *DJANGO_DB_NAME*, *DJANGO_DB_USER*, *DJANGO_DB_PASSWORD*
+    location of and credentials for a (Postgres) database instance for this app
+    (in the CI environment these are not needed in the environment, since they
+    are passed in as part of the Docker container-linking process in
+    circle.yml)

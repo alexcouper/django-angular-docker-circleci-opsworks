@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     apache2 \
     libapache2-mod-wsgi-py3 \
     python3.4 \
-    python3-pip
+    python3-pip \
+    python3-psycopg2
 # Prep codebase and Python packages
 COPY review /srv/review
 WORKDIR /srv/review

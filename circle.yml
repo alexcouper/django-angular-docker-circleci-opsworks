@@ -14,6 +14,12 @@ dependencies:
     - pip3 install -r review/requirements/test.txt
     - pip3 install -r review/requirements/deployment.txt
 
+database:
+  override:
+    # Keep the Postgres version in step with that at AWS RDS (currently 9.3)
+    - docker pull postgres:9.3
+    - docker run -d --name postgres postgres:9.3
+
 test:
   pre:
     - docker pull $DOCKER_LOG_ROUTER_IMAGE_NAME
@@ -21,10 +27,14 @@ test:
     - docker build -t $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG .
     - python3 review/manage.py collectstatic --noinput
     - docker build -t $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG static_build/
-    - docker run -d -p 80:80 --name review_circleci_app -e "DJANGO_STATIC_URL=http://127.0.0.1:8080/" -e "DJANGO_ALLOWED_HOST=127.0.0.1" $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG
+    # Prep a database for the Protractor (browser) tests
+    - docker run --link postgres:postgres -e "DJANGO_DB_HOST=postgres" -e "DJANGO_DB_NAME=postgres" -e "DJANGO_DB_USER=postgres" $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG python3 manage.py syncdb --noinput
+    - docker run --link postgres:postgres -e "DJANGO_DB_HOST=postgres" -e "DJANGO_DB_NAME=postgres" -e "DJANGO_DB_USER=postgres" $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG python3 manage.py migrate --noinput
+    - docker run -d -p 80:80 --name review_circleci_app --link postgres:postgres -e "DJANGO_STATIC_URL=http://127.0.0.1:8080/" -e "DJANGO_ALLOWED_HOST=127.0.0.1" -e "DJANGO_DB_HOST=postgres" -e "DJANGO_DB_NAME=postgres" -e "DJANGO_DB_USER=postgres" $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG
     - docker run -d -p 8080:80 --name review_circleci_static $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG
   override:
     - cd review; ./run_django_tests.sh
+    - npm run protractor
 
 deployment:
   hub:
