@@ -35,8 +35,9 @@ depenencies set up locally:
 
 Then you can run the BDD tests with:
 
-``npm run protractor``
+``./run_developer_tests.sh``
 
+This script takes care of starting and stopping the Django dev server for you.
 Note you will need the APP_SERVICE_URL environment variable set (see below)
 
 ## Environment Variables
