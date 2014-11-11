@@ -87,3 +87,9 @@ context...
 
   - *DOCKERHUB_STATIC_IMAGE_NAME* and *DOCKERHUB_STATIC_IMAGE_TAG* typically
     "onetouchapps/review-static" and "latest", respectively
+
+  - *DOCKER_LOG_ROUTER_IMAGE_NAME* the Docker image which contains the log
+    router (which is currently Logspout)
+
+  - *LOG_AGGREGATE_HOST* and *LOG_AGGREGATE_PORT* the hostname and port of the
+    log aggregation service
