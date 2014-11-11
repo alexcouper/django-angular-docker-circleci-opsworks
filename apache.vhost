@@ -13,4 +13,7 @@
         Require all granted
     </Directory>
 
+    CustomLog /dev/stdout combined
+    ErrorLog /dev/stdout
+
 </VirtualHost>
