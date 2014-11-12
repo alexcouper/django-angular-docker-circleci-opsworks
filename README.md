@@ -17,36 +17,69 @@ into a folder structure and served up by nginx.
 
 ## Development mode
 
-Local dependencies:
+### Getting set up
+
+You will need these 2 installed before you can do any dev work with this repo:
 
   - [Docker](https://docs.docker.com/installation/#installation)
 
   - [Fig](http://www.fig.sh/install.html)
 
-Once your dependencies are set up, Django / backend tests may be run from your
-host with:
+After you've installed these, you will need to run
 
-``fig build`` - if you haven't already done so, then
+``fig build``
 
-``developer_test_scripts/run_backend_tests.sh``
+You can then run a dev server, or run browser (BDD) tests, or run backend
+(Django nose) tests.
+
+### Running a dev server
+
+You don't need to install any Python stuff or database things; to run a dev
+server you:
+
+``fig up``
+
+This will run a dev server, accessible in a browser from your local machine
+at port 8000 on your local Docker host:
+
+  - if you are running a (U|Li)nix system, the address will most likely be
+    127.0.0.1 [you will also likely have to ``alias docker='sudo docker'`` for
+    scripts in this repo to work]
+
+  - if you are running a Mac, the address can be obtained with ``boot2docker
+    ip``
+
+Note that this will use a local sqlite3 database file on your machine, inside
+the repo, to allow for persistence of your test / dev data.
+
+### Running BDD Browser tests
 
 To run the BDD tests which will drive the code, written in Jasmine and
-executed (in dev) against the Django dev server, you need to have all the node
-depenencies set up locally:
+executed (in dev) against the Django dev server, you need:
 
-``nvm install``
+  1. [node](http://nodejs.org/download/) installed
+
+  2. all the node depenencies set up locally: ``nvm install``
 
 Then you can run the BDD tests with:
-
-``fig build`` - if you haven't already done so, then
 
 ``developer_test_scripts/run_browser_tests.sh``
 
 This script preps a Postgres database and takes care of starting and stopping
-the Django dev server (in its Fig container).
+the Django dev server (in its Fig container). Because it runs a fresh Postgres
+container every time, it will not interfere with your usual dev data. *[Note:
+you do not need Postgres installed on your host]*
 
-Note that before it will run, you will need the APP_SERVICE_URL environment
-variable set (see below)
+Note also that before it will run, you will need the APP_SERVICE_URL
+environment variable set to point to the location where the dev server normally
+runs (e.g. ``http://192.168.59.103:8000``) See the previous section for how to
+find the IP address.
+
+### Running Django-only backend tests
+
+Django Nose tests may be run from your host with:
+
+``developer_test_scripts/run_backend_tests.sh``
 
 ## Environment Variables
 
