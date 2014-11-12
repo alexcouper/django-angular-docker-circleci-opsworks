@@ -81,6 +81,17 @@ Django Nose tests may be run from your host with:
 
 ``developer_test_scripts/run_backend_tests.sh``
 
+## Logs from dev and dev testing
+
+Like the web servers in the containers, the Django logging system has also
+been configured to send all output to stdout on the container. Therefore you
+can capture all the log output from all the app container (and the postgres
+container during browser tests) by running a Logspout container and directing
+its output to the log aggregator of your choice (e.g. papertrail):
+
+``docker pull progrium/logspout``
+``docker run -d -v=/var/run/docker.sock:/tmp/docker.sock progrium/logspout syslog://logs.papertrailapp.com:12345`` (where "12345" is yout port at papertrail)
+
 ## Environment Variables
 
 For the various phases of this project's delivery cycle to function correctly,
