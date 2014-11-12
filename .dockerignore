@@ -1,5 +1,6 @@
 bower_components/
 browser_tests/
+ci_test_scripts/
 */.DS_Store
 developer_test_scripts/
 fig.yml
