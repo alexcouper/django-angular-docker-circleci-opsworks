@@ -26,6 +26,8 @@ Local dependencies:
 Once your dependencies are set up, Django / backend tests may be run from your
 host with:
 
+``fig build`` - if you haven't already done so, then
+
 ``developer_test_scripts/run_backend_tests.sh``
 
 To run the BDD tests which will drive the code, written in Jasmine and
