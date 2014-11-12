@@ -25,7 +25,7 @@ Local dependencies:
 
 Once your dependencies are set up, Django tests may be run from your host with:
 
-``fig run app ./run_django_tests.sh``
+``./run_django_tests.sh``
 
 To run the BDD tests which will drive the code, written in Jasmine and
 executed (in dev) against the Django dev server, you need to have all the node
