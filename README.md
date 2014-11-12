@@ -38,10 +38,15 @@ depenencies set up locally:
 
 Then you can run the BDD tests with:
 
-``./run_developer_tests.sh``
+``fig build`` - if you haven't already done so, then
 
-This script takes care of starting and stopping the Django dev server for you.
-Note you will need the APP_SERVICE_URL environment variable set (see below)
+``developer_test_scripts/run_browser_tests.sh``
+
+This script preps a Postgres database and takes care of starting and stopping
+the Django dev server (in its Fig container).
+
+Note that before it will run, you will need the APP_SERVICE_URL environment
+variable set (see below)
 
 ## Environment Variables
 

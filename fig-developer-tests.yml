@@ -1,0 +1,17 @@
+postgres:
+  # Keep the Postgres version in step with that at AWS RDS (currently 9.3)
+  image: postgres:9.3
+app:
+  build: .
+  command: ./run_dev_server.sh
+  environment:
+    DJANGO_DB_HOST: postgres
+    DJANGO_DB_NAME: postgres
+    DJANGO_DB_USER: postgres
+    DJANGO_TEST_MODE: 1
+  links:
+    - postgres
+  ports:
+    - "8000:8000"
+  volumes:
+    - ./review:/srv/review
