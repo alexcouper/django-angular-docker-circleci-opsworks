@@ -8,7 +8,7 @@ postgres:
     - "5432:5432"
 app:
   build: .
-  command: ./run_dev_server.sh
+  command: python3 manage.py runserver 0.0.0.0:8000
   environment:
     DJANGO_DB_HOST: postgres
     DJANGO_DB_NAME: postgres

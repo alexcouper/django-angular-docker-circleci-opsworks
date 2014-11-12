@@ -1,6 +1,6 @@
 app:
   build: .
-  command: ./run_dev_server.sh
+  command: python3 manage.py runserver 0.0.0.0:8000
   environment:
     DJANGO_TEST_MODE: 1
   ports:
