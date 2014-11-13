@@ -14,7 +14,7 @@ dependencies:
 test:
   pre:
     - docker pull $DOCKER_LOG_ROUTER_IMAGE_NAME
-    - docker run -d -h "review_circleci_logs" -v=/var/run/docker.sock:/tmp/docker.sock $DOCKER_LOG_ROUTER_IMAGE_NAME syslog://$LOG_AGGREGATE_HOST:$LOG_AGGREGATE_PORT
+    - docker run -d -h $LOG_ROUTER_SYSTEM_NAME -v=/var/run/docker.sock:/tmp/docker.sock $DOCKER_LOG_ROUTER_IMAGE_NAME syslog://$LOG_AGGREGATE_HOST:$LOG_AGGREGATE_PORT
     - docker build -t $DOCKERHUB_APP_IMAGE_NAME:$DOCKERHUB_APP_IMAGE_TAG .
     - python3 review/manage.py collectstatic --noinput
     - docker build -t $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG static_build/

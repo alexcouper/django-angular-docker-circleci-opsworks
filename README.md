@@ -140,6 +140,9 @@ the named contexts here.
   - *LOG_AGGREGATE_HOST* and *LOG_AGGREGATE_PORT* the hostname and port of the
     log aggregation service (e.g. papertrail)
 
+  - *LOG_ROUTER_SYSTEM_NAME* this is the name given at the start of each
+    routed log entry
+
   - *OW_APP_STACK_ID* and *OW_APP_APP_ID* IDs for the OpsWork app which runs
     the review-app containers and the deploy of which CI will trigger
 
