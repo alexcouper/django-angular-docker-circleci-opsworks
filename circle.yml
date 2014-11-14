@@ -34,6 +34,7 @@ deployment:
       - python3 deploy_to_opsworks.py static
       - python3 deploy_to_opsworks.py app
       - git checkout master
-      - git pull origin master
+      - git fetch origin master
+      - git reset --hard origin/master
       - git merge --ff-only circleci_poc
       - git push origin master
