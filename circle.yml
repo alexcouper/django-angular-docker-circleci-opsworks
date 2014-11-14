@@ -25,7 +25,7 @@ test:
 
 deployment:
   hub:
-    branch: circleci_poc
+    branch: develop
     commands:
       - envsubst < dockercfg.template > ~/.dockercfg
       - docker push $DOCKERHUB_STATIC_IMAGE_NAME:$DOCKERHUB_STATIC_IMAGE_TAG
@@ -36,5 +36,5 @@ deployment:
       - git checkout master
       - git fetch origin master
       - git reset --hard origin/master
-      - git merge --ff-only circleci_poc
+      - git merge --ff-only develop
       - git push origin master
