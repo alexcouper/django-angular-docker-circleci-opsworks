@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 if [[ -z "$APP_SERVICE_URL" ]];
 then
     echo "You must set the APP_SERVICE_URL environment variable to point to the normal dev server http://addr:port combination"
@@ -19,6 +20,7 @@ done
 PG_CONTAINER=`docker ps | grep _postgres_ | awk '{ print $1; }'`
 $FIG run app python3 manage.py migrate --noinput
 $FIG up -d --no-deps app
+set +e
 npm run protractor
 $FIG stop app
 $FIG stop postgres
