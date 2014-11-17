@@ -9,5 +9,9 @@ exports.config = {
 
   directConnect: true,
 
-  framework: 'jasmine'
+  framework: 'jasmine',
+
+  jasmineNodeOpts: {
+    isVerbose: true
+  }
 };
