@@ -59,7 +59,7 @@ executed (in dev) against the Django dev server, you need:
 
   1. [node](http://nodejs.org/download/) installed
 
-  2. all the node depenencies set up locally: ``nvm install``
+  2. all the node depenencies set up locally: ``npm install``
 
 Then you can run the BDD tests with:
 
