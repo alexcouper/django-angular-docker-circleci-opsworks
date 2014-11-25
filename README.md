@@ -1,3 +1,76 @@
+# Intro: Sharing our infrastructure
+
+## What is this?
+
+In setting up for a new project, I took these key architectural decisions:
+
+  1. to move to an entirely containerised approach (Docker)
+
+  2. to remove the need for weighty "development VM" installs and instead
+     opt for the lightweight (and excellent) Fig to enable me to run
+     a linked Docker containers against a fluid clodebase
+
+  3. to build a separated, 2-layer application (AngularJS + Django REST
+     Framework) as opposed to the traditional, single-stack, monolithic
+     "Django with a dash of jQuery" approach
+
+  4. to ditch the TDD->develop->write BDD (Behave) tests approach and instead
+     to power the whole dev process through using Protractor BDD tests from
+     the start of coding
+
+  5. to ditch self-hosted CI (Jenkins) and to move to a cloud provider for this
+     (CircleCI)
+
+  6. to ditch self-written Fabric deployment scripts and instead rely upon
+     a Platform-as-a-Service hosting solution (AWS OpsWorks)
+
+Ideally I would have chosen a completely host-agnostic Docker container hosting
+solution but none exist yet (or at least, none which also provide the
+resilience of AWS RDS alongside the computing engine offering).
+
+## What does it do?
+
+Using this code as a basis for a Django project will give you the following
+process:
+
+  1. BDD code from the outset
+
+  2. Development without the need for a VM
+
+  3. Code pushed to Github will trigger a build at CircleCI
+
+  4. CircleCI will build 2 containers - the Django app (running an Apache
+     process in a container) and the Django static files (running an nginx
+     process in a container)
+
+  5. CircleCI will run the browser BDD tests against these containers and run
+     the Django backend tests inside the app container itself
+
+  6. If tests pass, these containers will be pushed to Dockerhub
+
+  7. A deployment process will be kicked off on AWS OpsWorks, to deploy those
+     new containers to production
+
+## The sharing
+
+Towards the end of this build I thought that others may have a similar need,
+and so I decided to open-source our infrastructure setup, which is all
+contained within code. This repo, then, is the beginning of a commercial
+(private) project called "review". You will therefore find that name throughout
+the code and that is unlikely to change since I continue to cherry-pick new
+enhancements from our production branch into this public one.
+
+However please feel free to fork and - even better - issue Pull Requests if
+you find a way to improve any of the admittedly shoddy parts of this setup.
+
+I appreciate there are a lot of pieces missing from this puzzle, not least
+of which is "how do you set up OpsWorks for this?". A supporting blog post is
+on its way, honest. ;) Probably some time around Christmas 2014.
+
+Cheers.
+
+Here's the project README, which you will care about:
+
 # review-app
 
 This is the Django project which provides the App Service for the Review App.
