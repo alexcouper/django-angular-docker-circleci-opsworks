@@ -148,6 +148,21 @@ environment variable set to point to the location where the dev server normally
 runs (e.g. ``http://192.168.59.103:8000``) See the previous section for how to
 find the IP address.
 
+### Running a subset of the BDD browser tests
+
+When developing against Protractor tests, it's unlikely that you will ant to
+run the whole suite each time. The NPM / Protractor harness is set up in this
+repo so that you can override the 'specs' property of the Protractor conf and
+get it to run just one .js spec if you wish:
+
+    npm config set review-app:specs my_latest_spec.js
+    developer_test_scripts/run_browser_tests.sh
+
+You can reset this again to the full suite like this:
+
+    npm config delete review-app:specs
+    developer_test_scripts/run_browser_tests.sh
+
 ### Running Django-only backend tests
 
 Django Nose tests may be run from your host with:
