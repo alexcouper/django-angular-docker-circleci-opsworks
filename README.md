@@ -177,8 +177,10 @@ can capture all the log output from all the app container (and the postgres
 container during browser tests) by running a Logspout container and directing
 its output to the log aggregator of your choice (e.g. papertrail):
 
-``docker pull progrium/logspout``
-``docker run -d -v=/var/run/docker.sock:/tmp/docker.sock progrium/logspout syslog://logs.papertrailapp.com:12345`` (where "12345" is yout port at papertrail)
+    docker pull progrium/logspout
+    docker run -d -v=/var/run/docker.sock:/tmp/docker.sock progrium/logspout syslog://logs.papertrailapp.com:12345
+
+(where "12345" is yout port at papertrail)
 
 ## Environment Variables
 
