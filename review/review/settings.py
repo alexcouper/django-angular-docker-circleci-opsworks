@@ -77,6 +77,12 @@ if django_db_host is not None:
             'PORT': 5432
         }
     }
+    DJANGO_DB_SSL_CONN = os.environ.get('DJANGO_DB_SSL_CONN') == '1'
+    if DJANGO_DB_SSL_CONN:
+        DATABASES['default']['OPTIONS'] = {
+            'sslmode': 'verify-full',
+            'sslrootcert': '/etc/ssl/certs/rds-combined-ca-bundle.pem'
+        }
 else:
     DATABASES = {
         'default': {

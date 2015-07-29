@@ -14,6 +14,8 @@ RUN pip3 install -r requirements/base.txt -r requirements/test.txt
 # Configure Apache
 COPY apache.vhost /etc/apache2/sites-available/000-review.conf
 RUN a2enmod wsgi && a2ensite 000-review && a2dissite 000-default
+# Copy the AWS RDS cert authority bundle
+COPY rds/rds-combined-ca-bundle.pem /etc/ssl/certs/rds-combined-ca-bundle.pem
 # Set up the load balancer's "health PING"
 RUN echo 'OK, thanks' > /var/www/html/health.html
 # Go

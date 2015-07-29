@@ -256,3 +256,6 @@ the named contexts here.
 
   - *DJANGO_DB_HOST*, *DJANGO_DB_NAME*, *DJANGO_DB_USER*, *DJANGO_DB_PASSWORD*
     location of and credentials for a (Postgres) database instance for this app
+
+  - *DJANGO_DB_SSL_CONN* If present and set to "1", this tells Django to enforce an
+    SSL connection to the database
