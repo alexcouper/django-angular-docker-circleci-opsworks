@@ -244,6 +244,12 @@ the named contexts here.
   - *DJANGO_ALLOWED_HOST* This is required to match the HOST header of http
     requests which are to be serviced by the WSGI (Django) app
 
+  - *DJANGO_SECRET_KEY* If supplied in the env vars, this will be used by Django
+    instead of the literal supplied in the settings.py file (which is now acting
+    as a fallback / default). See the
+    [Django documentation for SECRET_KEY](https://docs.djangoproject.com/en/dev/ref/settings/#secret-key)
+    for details.
+
   - *DJANGO_STATIC_URL* should be set to the full prefix of the delivery URL
     for static files (for example ``https://static.foo.com/``). If not present
     in the env vars, defaults to ``/static/``.

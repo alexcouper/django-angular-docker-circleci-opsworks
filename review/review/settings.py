@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # (naturally this isn't the ACTUAL key we are using in production ;)
-SECRET_KEY = 'np#$v%63k2=nlsu0)a&yvi&31b536o!=8o(kzye(c8w2xkqvix'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'np#$v%63k2=nlsu0)a&yvi&31b536o!=8o(kzye(c8w2xkqvix')
 
 DJANGO_TEST_MODE = os.environ.get('DJANGO_TEST_MODE') == '1'
 
